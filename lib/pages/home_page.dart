@@ -15,28 +15,30 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text('美好人间'),
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: typeController,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10.0),
-                labelText: '美女类型',
-                helperText: '请输入你喜欢的类型',
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: typeController,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(10.0),
+                  labelText: '美女类型',
+                  helperText: '请输入你喜欢的类型',
+                ),
+                autofocus: false,
               ),
-              autofocus: false,
-            ),
-            RaisedButton(
-              onPressed: _choiceAction,
-              child: Text('选择完毕'),
-            ),
-            Text(
-              showText,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            )
-          ],
+              RaisedButton(
+                onPressed: _choiceAction,
+                child: Text('选择完毕'),
+              ),
+              Text(
+                showText,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -57,6 +59,7 @@ class _HomePageState extends State<HomePage> {
         });
     }
   }
+
   Future getHttp(String typeText) async {
     try {
       Response response;
@@ -64,6 +67,7 @@ class _HomePageState extends State<HomePage> {
       response = await Dio().get("https://www.easy-mock.com/mock/5c60131a4bed3a6342711498/baixing/dabaojian",
             queryParameters: data
           );
+      print(response);
       return response.data;
     } catch (e) {
       return print(e);
