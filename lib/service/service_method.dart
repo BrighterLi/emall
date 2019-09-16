@@ -40,7 +40,6 @@ Future getHomePageContent() async{
     var formData = {'lon':'115.02932','lat':'35.76189'};
     //response = await dio.get("http://www.baidu.com");
     response = await dio.post(servicePath['homePageContent'],data:formData);
-    print("response.data");
     print(response.data);
     if(response.statusCode==200){
       return response.data;

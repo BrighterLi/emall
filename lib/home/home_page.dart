@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../service/service_method.dart';
+import 'widget/custom_swiper.dart';
 
 class HomePage extends StatefulWidget {
   @override
