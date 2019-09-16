@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../service/service_method.dart';
 import 'widget/custom_swiper.dart';
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,25 +12,31 @@ class _HomePageState extends State<HomePage> {
   String homePageContent = '正在获取数据';
 
   @override
-  void initState() {
-    getHomePageContent().then((val) {
-    //getHomePageBeloConten().then((val) {
-      setState(() {
-        homePageContent = val.toString();
-      });
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('百姓生活+'),
-      ),
-      body: SingleChildScrollView(
-          child: Text(homePageContent)
-      ),
-    );
+        appBar: AppBar(
+          title: Text('百姓生活+'),
+        ),
+        body: FutureBuilder(
+          future: getHomePageContent(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var data = json.decode(snapshot.data.toString());
+              List<Map> swiperDataList =
+                  (data['data']['slides'] as List).cast();
+              return Column(
+                children: <Widget>[
+                  CustomSwiper(
+                    swiperDataList: swiperDataList,
+                  ),
+                ],
+              );
+            } else {
+              return Center(
+                child: Text('加载中'),
+              );
+            }
+          },
+        ));
   }
 }
