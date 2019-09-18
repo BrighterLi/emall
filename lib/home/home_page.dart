@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../service/service_method.dart';
 import 'widget/custom_swiper.dart';
-import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
