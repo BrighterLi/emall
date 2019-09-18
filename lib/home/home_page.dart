@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:emall/home/widget/top_navigator.dart';
 
 import '../service/service_method.dart';
 import 'widget/custom_swiper.dart';
@@ -24,14 +25,18 @@ class _HomePageState extends State<HomePage> {
           future: getHomePageContent(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              ///数据处理
               var data = json.decode(snapshot.data.toString());
               List<Map> swiperDataList =
                   (data['data']['slides'] as List).cast();
+              List<Map> navgatorList = (data['data']['category'] as List).cast();
+
               return Column(
                 children: <Widget>[
                   CustomSwiper(
                     swiperDataList: swiperDataList,
                   ),
+                  TopNavigator(navigatorList: navgatorList,)
                 ],
               );
             } else {

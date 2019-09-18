@@ -1,6 +1,12 @@
+///轮播组件图片
 class CustomSwiperBean {
-  int a;
-  int b;
+  String image;
 
-  CustomSwiperBean({this.a,this.b});
+  CustomSwiperBean({this.image});
+
+  factory CustomSwiperBean.fromJson(dynamic json) {
+    return CustomSwiperBean(
+      image: json['image'],
+    );
+  }
 }
