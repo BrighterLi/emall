@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:emall/home/widget/leader_phone.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emall/home/widget/top_navigator.dart';
@@ -32,6 +33,8 @@ class _HomePageState extends State<HomePage> {
                   (data['data']['slides'] as List).cast();
               List<Map> navgatorList = (data['data']['category'] as List).cast();
               String adPicture = data['data']['advertesPicture']['PICTURE_ADDRESS'];
+              String leaderImage = data['data']['shopInfo']['leaderImage'];
+              String leaderPhone = data['data']['shopInfo']['leaderPhone'];
 
               return Column(
                 children: <Widget>[
@@ -40,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   TopNavigator(navigatorList: navgatorList,),
                   AdBanner(adPicture: adPicture,),
+                  LeaderPhone(leaderImage:leaderImage,leaderPhone:leaderPhone,),
                 ],
               );
             } else {
