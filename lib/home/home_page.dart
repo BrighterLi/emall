@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:emall/home/widget/top_navigator.dart';
-
 import '../service/service_method.dart';
 import 'widget/custom_swiper.dart';
+import 'package:emall/home/widget/ad_banner.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,13 +31,15 @@ class _HomePageState extends State<HomePage> {
               List<Map> swiperDataList =
                   (data['data']['slides'] as List).cast();
               List<Map> navgatorList = (data['data']['category'] as List).cast();
+              String adPicture = data['data']['advertesPicture']['PICTURE_ADDRESS'];
 
               return Column(
                 children: <Widget>[
                   CustomSwiper(
                     swiperDataList: swiperDataList,
                   ),
-                  TopNavigator(navigatorList: navgatorList,)
+                  TopNavigator(navigatorList: navgatorList,),
+                  AdBanner(adPicture: adPicture,),
                 ],
               );
             } else {
