@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:emall/home/widget/leader_phone.dart';
+import 'package:emall/home/widget/recommend.dart';
 import 'package:flutter/material.dart';
 
 import 'package:emall/home/widget/top_navigator.dart';
@@ -35,16 +36,20 @@ class _HomePageState extends State<HomePage> {
               String adPicture = data['data']['advertesPicture']['PICTURE_ADDRESS'];
               String leaderImage = data['data']['shopInfo']['leaderImage'];
               String leaderPhone = data['data']['shopInfo']['leaderPhone'];
+              List<Map> recommendList = (data['data']['recommend'] as List).cast();
 
-              return Column(
-                children: <Widget>[
-                  CustomSwiper(
-                    swiperDataList: swiperDataList,
-                  ),
-                  TopNavigator(navigatorList: navgatorList,),
-                  AdBanner(adPicture: adPicture,),
-                  LeaderPhone(leaderImage:leaderImage,leaderPhone:leaderPhone,),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    CustomSwiper(
+                      swiperDataList: swiperDataList,
+                    ),
+                    TopNavigator(navigatorList: navgatorList,),  //导航组件
+                    AdBanner(adPicture: adPicture,),             //广告组件
+                    LeaderPhone(leaderImage:leaderImage,leaderPhone:leaderPhone,),  //拨打电话组件
+                    Recommend(recommendList:recommendList),    //推荐组件
+                  ],
+                ),
               );
             } else {
               return Center(

@@ -47,7 +47,7 @@ Future getHomePageContent() async{
       throw Exception('后端接口出现异常，请检测代码和服务器情况.........');
     }
   }catch(e){
-    return print('ERROR:======>${e}');
+    return print('ERROR:======>$e');
   }
 
 }
@@ -68,7 +68,7 @@ Future getHomePageBeloConten() async{
       throw Exception('后端接口出现异常，请检测代码和服务器情况.........');
     }
   }catch(e){
-    return print('ERROR:======>${e}');
+    return print('ERROR:======>$e');
   }
 
 
